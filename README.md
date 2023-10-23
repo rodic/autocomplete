@@ -2,7 +2,9 @@
 
 ## Description
 
-The `Dictionary` struct stores a collection of words, each with its corresponding weight. In this structure, each word is represented as a path within a tree, where each node along the path corresponds to a character in the word. Terminal nodes hold both the word itself and its weight. These terminal nodes store the complete word to expedite lookups, eliminating the need for backtracking and reconstructing the word from individual characters.
+The `Dictionary` struct stores a collection of words, each with its corresponding weight. In this structure, each word is represented as a path within a tree, where each node along the path corresponds to a character in the word. Terminal nodes hold both the word itself and its weight. 
+
+These terminal nodes store the complete word to expedite lookups, eliminating the need for backtracking and reconstructing the word from individual characters. Weights are used to arrange entries within the resulting vector, wherein words with greater weight will be positioned at the beginning.
 
 ```rust
 pub struct Dictionary<T> {
