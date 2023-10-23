@@ -6,9 +6,13 @@ The `Dictionary` struct stores a collection of words, each with its correspondin
 
 ```rust
 pub struct Dictionary<T> {
-    entries: HashMap<char, Dictionary<T>>,
-    weight: Option<T>,
-    word: Option<String>
+    entries: BTreeMap<char, Dictionary<T>>,
+    terminal: Option<Terminal<T>>,
+}
+
+struct Terminal<T> {
+    weight: T,
+    word: String,
 }
 ```
 
@@ -23,25 +27,29 @@ Would be represented as
 
 ```rust
 Dictionary {
-    weight: None,
-    word: None,
+    terminal: None,
     entries: {
         'A': Dictionary {
-            weight: Some(1),
-            word: Some("A"),
+            terminal: {
+                weight: Some(1),
+                word: Some("A"),
+            }
             entries: {
                 'A': Dictionary {
-                    weight: Some(2),
-                    word: Some("AA")
+                    terminal: Some({
+                        weight: Some(2),
+                        word: Some("AA")
+                    }),
                     entries: {},
                 },
                 'B': Dictionary {
-                    weight: None,
-                    word: None,
+                    terminal: None,
                     entries: {
                         'C': Dictionary {
-                            weight: Some(3),
-                            word: Some("ABC"),
+                            termainal: Some({
+                                weight: Some(3),
+                                word: Some("ABC"),
+                            })
                             entries: {},
                         },
                     },

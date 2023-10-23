@@ -22,8 +22,12 @@ use std::collections::BTreeMap;
 
 pub struct Dictionary<T> {
     entries: BTreeMap<char, Dictionary<T>>,
-    weight: Option<T>,
-    word: Option<String>,
+    terminal: Option<Terminal<T>>,
+}
+
+struct Terminal<T> {
+    weight: T,
+    word: String,
 }
 
 impl<T> Dictionary<T>
@@ -33,8 +37,7 @@ where
     pub fn new() -> Self {
         Self {
             entries: BTreeMap::new(),
-            weight: None,
-            word: None,
+            terminal: None,
         }
     }
 
@@ -57,12 +60,11 @@ where
         for c in word.chars() {
             dict = dict.entries.entry(c).or_insert_with(Self::new);
         }
-        dict.weight = Some(weight);
-        dict.word = Some(word);
+        dict.terminal = Some(Terminal { weight, word });
     }
 
     fn to_words(&self, result: &mut Vec<(String, T)>) {
-        if let (Some(word), Some(weight)) = (&self.word, &self.weight) {
+        if let Some(Terminal { word, weight }) = &self.terminal {
             result.push((word.clone(), *weight));
         }
 
