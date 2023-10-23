@@ -1,0 +1,22 @@
+[package]
+name = "autocomplete"
+description = "A Rust implementation of string autocompletion"
+repository = "https://github.com/rodic/autocomplete"
+categories = ["algorithms", "data-structures"]
+keywords = ["search", "autocompletion", "trie"]
+authors = ["Aleksandar Rodić <aleks.rodic@pm.me>"]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+exclude = ["/tests","/dictionary.txt", "/benches"]
+
+[dev-dependencies]
+criterion = "0.5.1"
+
+[[bench]]
+name = "words_benchmark"
+harness = false
+
+[profile.bench]
+debug = true
