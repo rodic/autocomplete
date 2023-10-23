@@ -1,6 +1,6 @@
 [package]
 name = "autocomplete"
-description = "A Rust implementation of string autocompletion"
+description = "A Rust Auto-complete feature using Trie data structure"
 repository = "https://github.com/rodic/autocomplete"
 categories = ["algorithms", "data-structures"]
 keywords = ["search", "autocompletion", "trie"]
