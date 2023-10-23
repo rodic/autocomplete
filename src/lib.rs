@@ -57,9 +57,7 @@ where
         for p in prefix.chars() {
             match dict.entries.get(&p) {
                 None => return Vec::new(),
-                Some(children) => {
-                    dict = children;
-                }
+                Some(children) => dict = children,
             }
         }
         let mut words = Vec::new();
