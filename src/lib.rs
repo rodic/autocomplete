@@ -1,3 +1,23 @@
+//! A Rust Auto-complete feature using Trie data structure.
+//!
+//! # Examples
+//!
+//! ```
+//! use autocomplete::Dictionary;
+//!
+//! let mut dict = Dictionary::<usize>::new();
+//!
+//! dict.insert(String::from("A"), 1);
+//! dict.insert(String::from("AA"), 2);
+//! dict.insert(String::from("ABC"), 3);
+//!
+//! assert_eq!(
+//!   dict.words("A"),
+//!   vec![(String::from("ABC"), 3),(String::from("AA"), 2),(String::from("A"), 1)]
+//! );
+//!
+//! assert_eq!(dict.words("B"), vec![]);
+//! ```
 use std::collections::BTreeMap;
 
 pub struct Dictionary<T> {

@@ -9,14 +9,15 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
-exclude = ["/tests","/dictionary.txt", "/benches"]
+exclude = ["tests/","dictionary.txt", "benches/", ".github/", ".gitignore"]
 
 [dev-dependencies]
-criterion = "0.5.1"
+criterion = "0.5"
 
 [[bench]]
 name = "words_benchmark"
 harness = false
+path = "benches/words_benchmark.rs"
 
 [profile.bench]
 debug = true
