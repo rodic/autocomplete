@@ -21,7 +21,7 @@ struct Terminal<T> {
 For example, words
 ```
 A, 1
-AA, 2
+AA, 5
 ABC, 3
 ```
 
@@ -32,15 +32,15 @@ Dictionary {
     terminal: None,
     entries: {
         'A': Dictionary {
-            terminal: {
-                weight: Some(1),
-                word: Some("A"),
-            }
+            terminal: Some({
+                weight: 1,
+                word: "A",
+            })
             entries: {
                 'A': Dictionary {
                     terminal: Some({
-                        weight: Some(2),
-                        word: Some("AA")
+                        weight: 5,
+                        word: "AA"
                     }),
                     entries: {},
                 },
@@ -49,8 +49,8 @@ Dictionary {
                     entries: {
                         'C': Dictionary {
                             termainal: Some({
-                                weight: Some(3),
-                                word: Some("ABC"),
+                                weight: 3,
+                                word: "ABC",
                             })
                             entries: {},
                         },
@@ -70,7 +70,7 @@ Both `build` and `build_without_weights` methods provide a convenient way to ini
 // Example using build method
 let words_with_weights = vec![
     ("A".to_string(), 1),
-    ("AA".to_string(), 2),
+    ("AA".to_string(), 5),
     ("ABC".to_string(), 3),
 ];
 
@@ -90,8 +90,8 @@ To query the `Dictionary` by prefix, use `words` methods.
 // Example using words
 dictionary.words("A")
 // [
+//     ("AA", 5), 
 //     ("ABC", 3), 
-//     ("AA", 2), 
 //     ("A", 1), 
 // ]
 ```

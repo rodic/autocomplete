@@ -8,12 +8,12 @@
 //! let mut dict = Dictionary::<usize>::new();
 //!
 //! dict.insert(String::from("A"), 1);
-//! dict.insert(String::from("AA"), 2);
+//! dict.insert(String::from("AA"), 5);
 //! dict.insert(String::from("ABC"), 3);
 //!
 //! assert_eq!(
 //!   dict.words("A"),
-//!   vec![(String::from("ABC"), 3),(String::from("AA"), 2),(String::from("A"), 1)]
+//!   vec![(String::from("AA"), 5),(String::from("ABC"), 3),(String::from("A"), 1)]
 //! );
 //!
 //! assert_eq!(dict.words("B"), vec![]);
