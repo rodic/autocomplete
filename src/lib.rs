@@ -75,16 +75,16 @@ where
 
     pub fn words(&self, prefix: &str) -> Vec<(String, T)> {
         let mut dict = self;
+        let mut result = Vec::new();
 
         for p in prefix.chars() {
             match dict.entries.get(&p) {
-                None => return Vec::new(),
+                None => return result,
                 Some(children) => dict = children,
             }
         }
-        let mut words = Vec::new();
-        dict.to_words(&mut words);
-        words.sort_by(|(_, w1), (_, w2)| w2.cmp(w1));
-        return words;
+        dict.to_words(&mut result);
+        result.sort_by(|(_, w1), (_, w2)| w2.cmp(w1));
+        result
     }
 }
