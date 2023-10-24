@@ -76,3 +76,26 @@ fn non_ascii_strings() {
 
     assert_eq!(dict.words("ú"), vec![(String::from("úpěl"), 0)]);
 }
+
+#[test]
+fn ordering() {
+    // Test that the words are ordered by alphabetical order when weights are equal
+    let words = vec![
+        (String::from("AB"), 2),
+        (String::from("AC"), 1),
+        (String::from("AA"), 1),
+        (String::from("AD"), 1),
+    ];
+
+    let dict = Dictionary::build(words);
+
+    assert_eq!(
+        dict.words("A"),
+        vec![
+            (String::from("AB"), 2),
+            (String::from("AA"), 1),
+            (String::from("AC"), 1),
+            (String::from("AD"), 1),
+        ]
+    );
+}
