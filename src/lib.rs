@@ -42,11 +42,12 @@ where
     }
 
     pub fn build(words: Vec<(String, T)>) -> Self {
-        let mut dict = Self::new();
-        for (word, weight) in words {
-            dict.insert(word, weight);
-        }
-        dict
+        words
+            .into_iter()
+            .fold(Self::new(), |mut dict, (word, weight)| {
+                dict.insert(word, weight);
+                dict
+            })
     }
 
     pub fn build_without_weights(words: Vec<String>) -> Self {
@@ -55,11 +56,9 @@ where
     }
 
     pub fn insert(&mut self, word: String, weight: T) {
-        let mut dict = self;
-
-        for c in word.chars() {
-            dict = dict.entries.entry(c).or_insert_with(Self::new);
-        }
+        let dict = word.chars().fold(self, |dict, c| {
+            dict.entries.entry(c).or_insert_with(Self::new)
+        });
         dict.terminal = Some(Terminal { weight, word });
     }
 
@@ -67,24 +66,23 @@ where
         if let Some(Terminal { word, weight }) = &self.terminal {
             result.push((word.clone(), *weight));
         }
-
-        for (_, dict) in &self.entries {
-            dict.to_words(result);
-        }
+        self.entries
+            .iter()
+            .for_each(|(_, dict)| dict.to_words(result));
     }
 
     pub fn words(&self, prefix: &str) -> Vec<(String, T)> {
-        let mut dict = self;
-        let mut result = Vec::new();
-
-        for p in prefix.chars() {
-            match dict.entries.get(&p) {
-                None => return result,
-                Some(children) => dict = children,
-            }
-        }
-        dict.to_words(&mut result);
-        result.sort_by(|(_, w1), (_, w2)| w2.cmp(w1));
-        result
+        prefix
+            .chars()
+            .try_fold(self, |dict, c| dict.entries.get(&c))
+            .map_or_else(
+                || Vec::new(),
+                |dict| {
+                    let mut result = Vec::new();
+                    dict.to_words(&mut result);
+                    result.sort_by(|(_, w1), (_, w2)| w2.cmp(w1));
+                    result
+                },
+            )
     }
 }
