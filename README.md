@@ -1,4 +1,8 @@
 # Autocomplete
+[<img alt="github" src="https://img.shields.io/badge/github-rodic/autocomplete-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/rodic/autocomplete)
+[<img alt="crates.io" src="https://img.shields.io/crates/v/autocomplete.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/autocomplete)
+[<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-autocomplete-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/autocomplete)
+[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/rodic/autocomplete/rust.yml?branch=master&style=for-the-badge" height="20">](https://github.com/rodic/autocomplete/actions?query=branch%3Amaster)
 
 ## Description
 
